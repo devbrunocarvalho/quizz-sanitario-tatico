@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Quizz Tático</title>
+    
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>Quiz de Conhecimentos Sanitários!</h1>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. O que é contaminação cruzada?</p>
+                <label><input type="radio" name="q1" value="a"> Mistura de dois tipos de carnes de boi diferentes.</label>
+                <label><input type="radio" name="q1" value="b"> Transferência de microorganismos de um alimento ou superfície para outro.</label>
+                <label><input type="radio" name="q1" value="c"> Alimento estragando de forma natural.</label>
+            </div>
+            <div class="question">
+                <p>2. Como abrir a lixeira do açougue?</p>
+                <label><input type="radio" name="q2" value="a"> Com as mãos usando luva.</label>
+                <label><input type="radio" name="q2" value="b"> Com os pés.</label>
+                <label><input type="radio" name="q2" value="c"> Com as mãos sem luva.</label>
+            </div>
+            <div class="question">
+                <p>3. Qual desses tipos é uma contaminação física?</p>
+                <label><input type="radio" name="q3" value="a"> Um fio de cabelo.</label>
+                <label><input type="radio" name="q3" value="b"> Uma mancha escura na carne.</label>
+                <label><input type="radio" name="q3" value="c"> Um pernil junto com um bife de coxão mole.</label>
+            </div>
+            <div class="question">
+                <p>4. Qual é o procedimento correto quando um alimento cai no chão?</p>
+                <label><input type="radio" name="q4" value="a"> Por pra salgar.</label>
+                <label><input type="radio" name="q4" value="b"> Descartar imediatamente.</label>
+                <label><input type="radio" name="q4" value="c"> Devolver pro balcão.</label>
+            </div>
+            <div class="question">
+                <p>5. Qual é a consequência mais comum de uma contaminação biológica?</p>
+                <label><input type="radio" name="q5" value="a"> Doenças alimentares causadas por vírus, fungos ou bactérias.</label>
+                <label><input type="radio" name="q5" value="b"> Aumento de gordura na carne.</label>
+                <label><input type="radio" name="q5" value="c"> Escurecimento da carne.</label>
+            </div>
+            <div class="question">
+                <p>6. Por que não se deve guardar itens de limpeza dentro do açougue?</p>
+                <label><input type="radio" name="q6" value="a"> Porque ocupam espaço.</label>
+                <label><input type="radio" name="q6" value="b"> Para evitar contaminação química.</label>
+                <label><input type="radio" name="q6" value="c"> Para não ter cheiro de água sanitária (Q-boa).</label>
+            </div>
+            <div class="question">
+                <p>7. Em quais destes casos se deve utilizar a máscara descartável?</p>
+                <label><input type="radio" name="q7" value="a"> Quando estiver gripado.</label>
+                <label><input type="radio" name="q7" value="b"> Nunca se deve utilizar.</label>
+                <label><input type="radio" name="q7" value="c"> Quando esquecer de tirar a barba.</label>
+            </div>
+            <div class="question">
+                <p>8. Qual desses itens deve ser lavado com água sanitária?</p>
+                <label><input type="radio" name="q8" value="a"> Nenhum.</label>
+                <label><input type="radio" name="q8" value="b"> Tábuas de corte.</label>
+                <label><input type="radio" name="q8" value="c"> Balcão.</label>
+            </div>
+            <div class="question">
+                <p>9. Quais são os tipos de contaminação?</p>
+                <label><input type="radio" name="q9" value="a"> Suja, cruzada, física e visual.</label>
+                <label><input type="radio" name="q9" value="b"> Molhada, física, orgânica e biológica.</label>
+                <label><input type="radio" name="q9" value="c"> Cruzada, biológica, química e física.</label>
+            </div>
+            <div class="question">
+                <p>10. Como deixar as facas após o expediente?</p>
+                <label><input type="radio" name="q10" value="a"> Limpas, dentro do armário.</label>
+                <label><input type="radio" name="q10" value="b"> Limpas, embaladas com sacos e dentro do armário.</label>
+                <label><input type="radio" name="q10" value="c"> No suporte dentro do próprio açougue e limpas.</label>
+            </div>
+
+            <button type="submit" class="btn">Enviar respostas pro seu Zé!</button>
+        </form>
+
+        <div id="result" class="result hidden">
+            <h2 id="score"></h2>
+            <p id="message"></p>
+            <button id="retry" class="btn">Refazer Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('quiz-form');
+        const resultContainer = document.getElementById('result');
+        const scoreDisplay = document.getElementById('score');
+        const messageDisplay = document.getElementById('message');
+        const retryButton = document.getElementById('retry');
+
+        const correctAnswers = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'a',
+            q4: 'b',
+            q5: 'a',
+            q6: 'b',
+            q7: 'a',
+            q8: 'b',
+            q9: 'c',
+            q10: 'c'
+        };
+
+        quizForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let score = 0;
+            for (const [question, correct] of Object.entries(correctAnswers)) {
+                const userAnswer = quizForm.elements[question].value;
+                if (userAnswer === correct) {
+                    score++;
+                }
+            }
+
+            quizForm.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+
+            scoreDisplay.textContent = `Você acertou ${score} de 10 perguntas`;
+
+            if (score <= 3) {
+                messageDisplay.textContent = "🚨 Cuidado! Desse jeito pode perder a gratificação";
+            } else if (score <= 6) {
+                messageDisplay.textContent = "👍 Está no caminho certo, continue aprendendo!";
+            } else if (score <= 9) {
+                messageDisplay.textContent = "👏 Muito bem! Você prestou atenção na nossa aula!";
+            } else {
+                messageDisplay.textContent = "🏆 Perfeito! Seu Zé vai ficar orgulhoso! Ganhou um chocolate!";
+            }
+        });
+
+        retryButton.addEventListener('click', function () {
+            quizForm.reset();
+            quizForm.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

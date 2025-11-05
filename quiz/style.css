@@ -1,0 +1,122 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Josefin Sans", sans-serif;
+            background: linear-gradient(135deg, blue, red);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            width: 100%;
+            max-width: 700px;
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            margin-left: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            background-color: red;
+            transform: scale(1.02);
+        }
+
+        .result {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #score {
+            font-size: 1.5rem;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        #message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            label {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            #score {
+                font-size: 1.3rem;
+            }
+
+            #message {
+                font-size: 1rem;
+            }
+        }
+    
